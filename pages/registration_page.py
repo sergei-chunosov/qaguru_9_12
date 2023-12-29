@@ -36,14 +36,14 @@ class RegistrationPage:
         browser.all('.custom-checkbox').element_by(have.exact_text(user.hobby)).perform(
             command.js.scroll_into_view).click()
 
-        browser.element('#currentAddress').type(user.address).perform(
-            command.js.scroll_into_view)
+        browser.element('#currentAddress').type(user.address)
 
         picture_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resources', user.picture)
         browser.element('#uploadPicture').send_keys(os.path.abspath(picture_path))
 
         browser.element('#state').click().element('#react-select-3-option-2').should(
-            have.exact_text(user.state)).click()
+            have.exact_text(user.state)).perform(
+            command.js.scroll_into_view).click()
 
         browser.element('#city').click().element('#react-select-4-option-0').should(have.exact_text(user.city)).click()
         browser.element('#submit').press_enter()
