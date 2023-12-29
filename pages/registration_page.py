@@ -36,6 +36,8 @@ class RegistrationPage:
         browser.all('.custom-checkbox').element_by(have.exact_text(user.hobby)).perform(
             command.js.scroll_into_view).click()
 
+        browser.element('#currentAddress').perform(
+            command.js.scroll_into_view)
         browser.element('#currentAddress').type(user.address)
 
         picture_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resources', user.picture)
