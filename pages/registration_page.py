@@ -2,6 +2,8 @@ from selene import browser, have, command
 import os
 
 from data.user_data import User
+from tests import conftest
+from tests.conftest import setup_browser
 
 
 class RegistrationPage:
@@ -19,8 +21,6 @@ class RegistrationPage:
         browser.element('#userEmail').type(user.email)
         browser.all('[name=gender]').element_by(have.value(user.gender)).element('..').click()
         browser.element('#userNumber').type(user.phone)
-
-
 
         browser.element('#dateOfBirthInput').click()
         browser.element('.react-datepicker__month-dropdown-container').click()
@@ -40,8 +40,6 @@ class RegistrationPage:
 
         picture_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resources', user.picture)
         browser.element('#uploadPicture').send_keys(os.path.abspath(picture_path))
-
-
 
         browser.element('#state').click().element('#react-select-3-option-2').should(
             have.exact_text(user.state)).click()
