@@ -2,8 +2,6 @@ from selene import browser, have, command
 import os
 
 from data.user_data import User
-from tests import conftest
-from tests.conftest import setup_browser
 
 
 class RegistrationPage:
@@ -32,11 +30,14 @@ class RegistrationPage:
         browser.all(f'.react-datepicker__day--0{user.birthday[0]}').first.click()
 
         browser.element('#subjectsInput').type('En')
+
         browser.element('#react-select-2-option-0').should(have.exact_text(user.subjects)).click()
+
         browser.all('.custom-checkbox').element_by(have.exact_text(user.hobby)).perform(
             command.js.scroll_into_view).click()
 
-        browser.element('#currentAddress').type(user.address)
+        browser.element('#currentAddress').type(user.address).perform(
+            command.js.scroll_into_view)
 
         picture_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resources', user.picture)
         browser.element('#uploadPicture').send_keys(os.path.abspath(picture_path))
