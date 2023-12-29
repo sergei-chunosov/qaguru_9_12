@@ -8,7 +8,7 @@ class RegistrationPage:
 
     def open(self):
         browser.open('automation-practice-form')
-        browser.all('[id^=google_ads]').with_(timeout=10).wait_until(
+        browser.all('[id^=google_ads]').with_(timeout=20).wait_until(
             have.size_less_than_or_equal(3)
         )
         browser.all('[id^=google_ads]').perform(command.js.remove)
