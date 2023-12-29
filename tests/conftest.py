@@ -44,7 +44,6 @@ def setup_browser(request):
         options=options
     )
     browser.config.driver = driver
-    # browser = Browser(Config(driver))
 
     browser.config.base_url = "https://demoqa.com/"
     browser.config.window_width = '1900'
