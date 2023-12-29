@@ -1,3 +1,5 @@
+from time import sleep
+
 from selene import browser, have, command
 import os
 
@@ -8,6 +10,7 @@ class RegistrationPage:
 
     def open(self):
         browser.open('automation-practice-form')
+        sleep(20)
         browser.all('[id^=google_ads]').with_(timeout=20).wait_until(
             have.size_less_than_or_equal(3)
         )
