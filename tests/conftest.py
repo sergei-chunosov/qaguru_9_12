@@ -2,7 +2,7 @@ import os
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selene import Browser, Config
+from selene import Browser, Config, browser
 from dotenv import load_dotenv
 from utils import attach
 
@@ -43,8 +43,8 @@ def setup_browser(request):
         command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
         options=options
     )
-    # browser.config.driver = driver
-    browser = Browser(Config(driver))
+    browser.config.driver = driver
+    # browser = Browser(Config(driver))
 
     browser.config.base_url = "https://demoqa.com/"
     browser.config.window_width = '1900'
